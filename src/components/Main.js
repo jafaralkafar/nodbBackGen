@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import Header from './Header'
 import CreateBack from './CreateBack'
+import ListBack from './ListBack'
 
 export default class Main extends Component {
     constructor(props) {
@@ -22,7 +23,19 @@ export default class Main extends Component {
     }
 
     createBackground = (newBackground) => {
-        axios.post('/api/backgrounds')
+        axios.post('/api/backgrounds', newBackground)
+        .then(res => this.setState({completedBackgrounds: res.data}))
+        .catch(err => console.log(err))
+    }
+
+    updateBackground = background => {
+        axios.put(`/api/backgrounds/${background.id}`, background)
+        .then(res => this.setState({completedBackgrounds: res.data}))
+        .catch(err => console.log(err))
+    }
+
+    deleteBackground = id => {
+        axios.delete(`/api/backgrounds/${id}`)
         .then(res => this.setState({completedBackgrounds: res.data}))
         .catch(err => console.log(err))
     }
@@ -39,10 +52,21 @@ export default class Main extends Component {
     
     render() {
         return (
-            <div>   
-                <Header index={this.state.index} backgrounds={this.state.completedBackgrounds}/>
-                <CreateBack 
-                    createBackground={this.createBackground}/>
+            <div className="main">
+                <header>
+                    <Header index={this.state.index} backgrounds={this.state.completedBackgrounds}/>
+                </header>
+                <section>
+                    <CreateBack 
+                        createBackground={this.createBackground}
+                        />
+                    <ListBack 
+                        backgrounds={this.state.completedBackgrounds}
+                        setIndex={this.setIndex}
+                        updateBackground={this.updateBackground}
+                        deleteBackground={this.deleteBackground}/>
+                </section>
+                
             </div>
         )
     }

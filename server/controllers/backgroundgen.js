@@ -2,9 +2,9 @@ let id = 1
 let completedBackgrounds = [
     {
         id: id++,
-        user: 'Grant',
-        color1: '',
-        color2: '',
+        user: 'No one',
+        color1: '#ffffff',
+        color2: '#ffffff',
         backgroundUrl: ''
     },
 ]

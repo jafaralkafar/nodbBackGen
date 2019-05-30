@@ -1,14 +1,45 @@
 .App {
-  text-align: center;
-  display: flex;
-  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
-.header {
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-items: center;
+  
   
 }
 
 .create {
-  justify-self: left;
+  margin-top: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  
+  
+}
+
+.backgroundlist {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  height: 200px;
+  overflow-y:auto;
+}
+
+span {
+  margin-right: 20px;
+}
+
+.listbutton {
+  margin-right: 10px;
 }
 
