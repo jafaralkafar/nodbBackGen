@@ -16,7 +16,7 @@ export default class extends Component {
 
     render() {
         return (
-            <button onClick={this.props.setIndex}>Apply</button>
+            <button className="listbutton" onClick={this.props.setIndex}>Apply</button>
         )
     }
 }

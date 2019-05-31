@@ -113,9 +113,9 @@ export default class CreateBack extends Component {
                     onChange={this.handleChange}/>
                 <br />
                 {editting ? (
-                    <button onClick={this.updateBackground}>Update</button>
+                    <button className="listbutton" onClick={this.updateBackground}>Update</button>
                 ) : (
-                    <button onClick={this.createBackground}>Add</button>
+                    <button className="listbutton" onClick={this.createBackground}>Add</button>
                 )}
             </section>
         )

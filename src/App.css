@@ -46,7 +46,6 @@ header {
   flex-direction: column; 
   align-items: center;
   z-index: 5;
-  
 }
 
 .backgroundlist {
@@ -65,5 +64,9 @@ span {
 
 .listbutton {
   margin-right: 10px;
+  border-radius: 12px;
+  background: black;
+  color: white;
+  border: none;
 }
 
