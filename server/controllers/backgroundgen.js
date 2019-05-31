@@ -26,11 +26,19 @@ module.exports = {
     },
     update: (req, res) => {
         let {id} = req.params
-        let updatedBackground = req.body
-        updatedBackground.id = id
+        let { user, color1, color2, backgroundUrl } = req.body
+        let background = completedBackgrounds.find(background => +background.id === +id)
         let index = completedBackgrounds.findIndex(background => +background.id === +id)
-        completedBackgrounds.splice(index, 1, updatedBackground)
+        
+        let newBackground = {
+            id: background.id,
+            user: user || background.user,
+            color1: color1 || background.color1,
+            color2: color2 || background.color2,
+            backgroundUrl: backgroundUrl || background.backgroundUrl
+        }
 
+        completedBackgrounds[index] = newBackground
         res.status(200).send(completedBackgrounds)
     },
     delete: (req, res) => {

@@ -11,7 +11,9 @@ export default class Main extends Component {
 
         this.state = {
             completedBackgrounds: [],
-            index: 0
+            index: 0,
+            editting: false,
+            currentBackground: {}
         }
     }
 
@@ -27,14 +29,28 @@ export default class Main extends Component {
         .then(res => this.setState({completedBackgrounds: res.data}))
         .catch(err => console.log(err))
     }
+    
+    setEditting = id => {
+        let background = this.state.completedBackgrounds.find(background => +background.id === +id)
 
-    updateBackground = background => {
-        axios.put(`/api/backgrounds/${background.id}`, background)
-        .then(res => this.setState({completedBackgrounds: res.data}))
-        .catch(err => console.log(err))
+        this.setState({
+            editting: true,
+            currentBackground: background
+        })
     }
 
+    updateBackground = (id, background) => {
+        axios.put(`/api/backgrounds/${id}`, background)
+        .then(res => this.setState({
+            completedBackgrounds: res.data,
+            currentCoin: {},
+            editting: false
+        }))
+        .catch(err => console.log(err))
+    }
+    
     deleteBackground = id => {
+        console.log(id)
         axios.delete(`/api/backgrounds/${id}`)
         .then(res => this.setState({completedBackgrounds: res.data}))
         .catch(err => console.log(err))
@@ -49,22 +65,31 @@ export default class Main extends Component {
             this.setState({index: index })
         }
     }    
+
+
     
     render() {
+        const {currentBackground, editting} = this.state
+
         return (
             <div className="main">
                 <header>
                     <Header index={this.state.index} backgrounds={this.state.completedBackgrounds}/>
                 </header>
-                <section>
+                <section className="allstuff">
                     <CreateBack 
-                        createBackground={this.createBackground}
+                        createBackground={this.createBackground} 
+                        editting={editting}
+                        updateBackground={this.updateBackground}
+                        currentBackground={currentBackground}
                         />
                     <ListBack 
                         backgrounds={this.state.completedBackgrounds}
                         setIndex={this.setIndex}
-                        updateBackground={this.updateBackground}
-                        deleteBackground={this.deleteBackground}/>
+                        deleteBackground={this.deleteBackground}
+                        setEditting={this.setEditting}
+                        currentBackground={currentBackground}
+                        />
                 </section>
                 
             </div>

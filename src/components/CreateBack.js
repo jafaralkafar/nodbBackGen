@@ -12,10 +12,47 @@ export default class CreateBack extends Component {
         }
     }
 
-    handleClick = () => {
+    componentDidUpdate(prevProps) {
+        if(prevProps.currentBackground.user !== this.props.currentBackground.user) {
+            this.setState({
+                user: this.props.currentBackground.user,
+                color1: this.props.currentBackground.color1,
+                color2: this.props.currentBackground.color2,
+                backgroundUrl: this.props.currentBackground.backgroundUrl
+            })
+        }
+    }
+
+    createBackground = () => {
         let newBackground = this.state
         this.props.createBackground(newBackground)
+
+        this.setState({
+            user: '',
+            color1: '#ffffff',
+            color2: '#ffffff',
+            backgroundUrl: ''
+        })
         
+    }
+
+    updateBackground = () => {
+        const {id} = this.props.currentBackground
+        let { user, color1, color2, backgroundUrl} = this.state
+        let updatedBackground = {
+            user,
+            color1,
+            color2,
+            backgroundUrl
+        }
+        this.props.updateBackground(id, updatedBackground)
+
+        this.setState({
+            user: '',
+            color1: '#ffffff',
+            color2: '#ffffff',
+            backgroundUrl: ''
+        })
     }
 
     handleChange = e => {
@@ -43,12 +80,13 @@ export default class CreateBack extends Component {
         })
         
     }
-    // might be easier to just create a box to show the gradient
     
 
     render() {
+        let chooseGradient = "linear-gradient(to right, " + this.state.color1 + ", " + this.state.color2 + ")"
+        const {editting} = this.props
         return (
-            <section className="create">
+            <section className="create" style={{background: chooseGradient}}>
                 <input 
                     type="text" 
                     name="user" 
@@ -74,7 +112,11 @@ export default class CreateBack extends Component {
                     value={this.state.backgroundUrl}
                     onChange={this.handleChange}/>
                 <br />
-                <button onClick={this.handleClick}>Add</button>
+                {editting ? (
+                    <button onClick={this.updateBackground}>Update</button>
+                ) : (
+                    <button onClick={this.createBackground}>Add</button>
+                )}
             </section>
         )
     }
