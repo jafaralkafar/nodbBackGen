@@ -5,7 +5,7 @@ let completedBackgrounds = [
         user: 'No one',
         color1: '#ffffff',
         color2: '#ffffff',
-        backgroundUrl: ''
+        // backgroundUrl: ''
     },
 ]
 
@@ -26,7 +26,7 @@ module.exports = {
     },
     update: (req, res) => {
         let {id} = req.params
-        let { user, color1, color2, backgroundUrl } = req.body
+        let { user, color1, color2 } = req.body
         let background = completedBackgrounds.find(background => +background.id === +id)
         let index = completedBackgrounds.findIndex(background => +background.id === +id)
         
@@ -35,7 +35,7 @@ module.exports = {
             user: user || background.user,
             color1: color1 || background.color1,
             color2: color2 || background.color2,
-            backgroundUrl: backgroundUrl || background.backgroundUrl
+            // backgroundUrl: backgroundUrl || background.backgroundUrl
         }
 
         completedBackgrounds[index] = newBackground

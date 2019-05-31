@@ -8,17 +8,15 @@ export default class extends Component {
             user: '',
             color1: '',
             color2: '',
-            backgroundUrl: ''
+            // backgroundUrl: ''
         }
     }
 
-    handleClick = () => {
-        
-    }
+    
 
     render() {
         return (
-            <button onClick={this.handleClick}>Apply</button>
+            <button onClick={this.props.setIndex}>Apply</button>
         )
     }
 }

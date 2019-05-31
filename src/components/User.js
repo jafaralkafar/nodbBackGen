@@ -8,8 +8,7 @@ export default function User(props) {
         <button className="listbutton" onClick={() => props.setEditting(props.background.id)}>Edit</button>
         <button className="listbutton" onClick={() => props.deleteBackground(props.background.id)}>Delete</button>
         <Apply className="listbutton"
-            currentBackground={props.currentBackground}
-            setIndex={props.setIndex}/>
+            setIndex={() => props.setIndex(props.id)}/>
     </div>
     )
 }

@@ -4,6 +4,7 @@ import axios from 'axios'
 import Header from './Header'
 import CreateBack from './CreateBack'
 import ListBack from './ListBack'
+import { blockStatement } from '@babel/types';
 
 export default class Main extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ export default class Main extends Component {
             completedBackgrounds: [],
             index: 0,
             editting: false,
-            currentBackground: {}
+            currentBackground: {},
+            appliedBackground: {}
         }
     }
 
@@ -43,38 +45,44 @@ export default class Main extends Component {
         axios.put(`/api/backgrounds/${id}`, background)
         .then(res => this.setState({
             completedBackgrounds: res.data,
-            currentCoin: {},
+            currentBackground: {},
             editting: false
         }))
         .catch(err => console.log(err))
     }
     
     deleteBackground = id => {
-        console.log(id)
+        // console.log(id)
         axios.delete(`/api/backgrounds/${id}`)
         .then(res => this.setState({completedBackgrounds: res.data}))
         .catch(err => console.log(err))
     }
 
     setIndex=(id)=> {
+        // console.log(id)
         // receiving a background's id, finding the index that matches the id setting the id to the state
         let {completedBackgrounds} = this.state
 
         let index = completedBackgrounds.findIndex(user => +user.id === +id)
+        // console.log(index)
         if (index !== -1){
-            this.setState({index: index })
-        }
+            this.setState({
+                index: index,
+                appliedBackground: completedBackgrounds[index]
+             }) 
+        } 
+        
     }    
 
 
     
     render() {
-        const {currentBackground, editting} = this.state
-
+        const {currentBackground, editting, appliedBackground} = this.state
+        let chooseGradient = "linear-gradient(to right, " + appliedBackground.color1 + ", " + appliedBackground.color2 + ")"
         return (
-            <div className="main">
+            <div className="main" style={{background: chooseGradient}}>
                 <header>
-                    <Header index={this.state.index} backgrounds={this.state.completedBackgrounds}/>
+                    <Header index={this.state.index} appliedBackground={this.state.appliedBackground}/>
                 </header>
                 <section className="allstuff">
                     <CreateBack 

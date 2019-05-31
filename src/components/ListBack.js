@@ -16,8 +16,7 @@ export default class ListBack extends Component {
                                 background={background}
                                 deleteBackground={this.props.deleteBackground}
                                 setEditting={this.props.setEditting}
-                                id={background.id}
-                                currentBackground={this.props.currentBackground}
+                                id={background.id}                               
                                 setIndex={this.props.setIndex}/>
                         </div>
                     )

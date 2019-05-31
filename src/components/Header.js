@@ -7,8 +7,8 @@ export default function Header(props) {
     
     return (
         <header className="header">
-            {props.backgrounds[props.index] &&
-            <h1>{props.backgrounds[props.index].user}'s Background</h1>
+            {props.appliedBackground.user &&
+            <h1>{props.appliedBackground.user}'s Background</h1>
             }
             
         </header>

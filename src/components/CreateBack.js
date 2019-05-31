@@ -8,7 +8,7 @@ export default class CreateBack extends Component {
             user: '',
             color1: '#ffffff',
             color2: '#ffffff',
-            backgroundUrl: ''
+            // backgroundUrl: ''
         }
     }
 
@@ -18,7 +18,7 @@ export default class CreateBack extends Component {
                 user: this.props.currentBackground.user,
                 color1: this.props.currentBackground.color1,
                 color2: this.props.currentBackground.color2,
-                backgroundUrl: this.props.currentBackground.backgroundUrl
+                // backgroundUrl: this.props.currentBackground.backgroundUrl
             })
         }
     }
@@ -31,19 +31,19 @@ export default class CreateBack extends Component {
             user: '',
             color1: '#ffffff',
             color2: '#ffffff',
-            backgroundUrl: ''
+            // backgroundUrl: ''
         })
         
     }
 
     updateBackground = () => {
         const {id} = this.props.currentBackground
-        let { user, color1, color2, backgroundUrl} = this.state
+        let { user, color1, color2} = this.state
         let updatedBackground = {
             user,
             color1,
             color2,
-            backgroundUrl
+            // backgroundUrl
         }
         this.props.updateBackground(id, updatedBackground)
 
@@ -51,7 +51,7 @@ export default class CreateBack extends Component {
             user: '',
             color1: '#ffffff',
             color2: '#ffffff',
-            backgroundUrl: ''
+            // backgroundUrl: ''
         })
     }
 
@@ -105,12 +105,12 @@ export default class CreateBack extends Component {
                         value={this.state.color2}
                         onChange={this.handleColorChange2}/>
                 </div>
-                <input 
+                {/* <input 
                     type="text" 
                     name="backgroundUrl" 
                     placeholder="Background Image"
                     value={this.state.backgroundUrl}
-                    onChange={this.handleChange}/>
+                    onChange={this.handleChange}/> */}
                 <br />
                 {editting ? (
                     <button onClick={this.updateBackground}>Update</button>
