@@ -30,6 +30,7 @@
 
 header {
   align-self: center;
+  z-index: 2;
 }
 
 .allstuff {

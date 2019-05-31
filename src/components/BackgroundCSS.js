@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
         background-image: url('${props => props.bgimage || ''}');
         background-repeat: no-repeat;
         background-position: 50% 0;
-        background-size: cover;
+        background-size: contain;
         
 
 `
