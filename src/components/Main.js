@@ -4,7 +4,8 @@ import axios from 'axios'
 import Header from './Header'
 import CreateBack from './CreateBack'
 import ListBack from './ListBack'
-import { blockStatement } from '@babel/types';
+import {Wrapper} from './BackgroundCSS'
+
 
 export default class Main extends Component {
     constructor(props) {
@@ -79,8 +80,12 @@ export default class Main extends Component {
     render() {
         const {currentBackground, editting, appliedBackground} = this.state
         let chooseGradient = "linear-gradient(to right, " + appliedBackground.color1 + ", " + appliedBackground.color2 + ")"
+        let backgroundImage = appliedBackground.backgroundUrl
+        console.log(typeof backgroundImage)
         return (
-            <div className="main" style={{background: chooseGradient}}>
+            
+            // <div className="main" style={{background: chooseGradient}}>
+            <Wrapper bgcolor={chooseGradient} bgimage={backgroundImage}>
                 <header>
                     <Header index={this.state.index} appliedBackground={this.state.appliedBackground}/>
                 </header>
@@ -99,8 +104,8 @@ export default class Main extends Component {
                         currentBackground={currentBackground}
                         />
                 </section>
-                
-            </div>
+            </Wrapper>
+            // </div>
         )
     }
 

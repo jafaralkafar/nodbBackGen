@@ -10,6 +10,22 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  
+}
+
+.main::before {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
 }
 
 header {
@@ -28,7 +44,7 @@ header {
   display: flex;
   flex-direction: column; 
   align-items: center;
-  
+  z-index: 5;
   
 }
 
@@ -39,6 +55,7 @@ header {
   margin-top: 20px;
   height: 200px;
   overflow-y:auto;
+  z-index: 5;
 }
 
 span {

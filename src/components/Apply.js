@@ -8,7 +8,7 @@ export default class extends Component {
             user: '',
             color1: '',
             color2: '',
-            // backgroundUrl: ''
+            backgroundUrl: ''
         }
     }
 
