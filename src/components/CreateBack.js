@@ -85,9 +85,10 @@ export default class CreateBack extends Component {
     render() {
         let chooseGradient = "linear-gradient(to right, " + this.state.color1 + ", " + this.state.color2 + ")"
         const {editting} = this.props
+        let sectionBackground = this.state.color1 === '#ffffff' && this.state.color2 === '#ffffff' ? 'inherit' : chooseGradient
         return (
-            <section className="create" style={{background: chooseGradient}}>
-                <input 
+                <section className="create" style={{background: sectionBackground}}>
+                 <input 
                     type="text" 
                     name="user" 
                     placeholder="Name"
